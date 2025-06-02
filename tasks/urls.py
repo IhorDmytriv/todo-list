@@ -4,7 +4,8 @@ from tasks.views import (
     TaskCreateView,
     TaskUpdateView,
     TaskDeleteView,
-    toggle_task_status
+    toggle_task_status,
+    TagListView
 )
 
 urlpatterns = [
@@ -25,6 +26,11 @@ urlpatterns = [
         toggle_task_status,
         name="toggle-task-status"
     ),
+    path(
+        "tags/",
+        TagListView.as_view(),
+        name="tag-list"
+    )
 ]
 
 app_name = "tasks"

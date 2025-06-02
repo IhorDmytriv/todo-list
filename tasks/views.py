@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 
 from tasks.forms import TaskForm
-from tasks.models import Task
+from tasks.models import Task, Tag
 
 
 def index(request):
@@ -38,3 +38,7 @@ class TaskUpdateView(UpdateView):
 class TaskDeleteView(DeleteView):
     model = Task
     success_url = reverse_lazy("tasks:index")
+
+
+class TagListView(ListView):
+    model = Tag
