@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView
 
@@ -12,6 +12,13 @@ def index(request):
         "task_list": task_list,
     }
     return render(request, "tasks/index.html", context=context)
+
+
+def toggle_task_status(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.is_complete = not task.is_complete
+    task.save()
+    return redirect("tasks:index")
 
 
 class TaskCreateView(CreateView):

@@ -43,6 +43,15 @@
 
               </div>
             </div>
+            {% if task.is_complete %}
+              <a href="{% url 'tasks:toggle-task-status' pk=task.id %}" class="btn btn-secondary position-absolute" style="right: 50px; top: 75px;">
+                Undo
+              </a>
+            {% else %}
+              <a href="{% url 'tasks:toggle-task-status' pk=task.id %}" class="btn btn-success position-absolute" style="right: 50px; top: 75px;">
+                Complete
+              </a>
+            {% endif %}
           </div>
         </div>
       {% empty %}

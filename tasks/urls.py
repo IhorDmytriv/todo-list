@@ -1,5 +1,11 @@
 from django.urls import path
-from tasks.views import index, TaskCreateView, TaskUpdateView, TaskDeleteView
+from tasks.views import (
+    index,
+    TaskCreateView,
+    TaskUpdateView,
+    TaskDeleteView,
+    toggle_task_status
+)
 
 urlpatterns = [
     path("", index, name="index"),
@@ -13,6 +19,11 @@ urlpatterns = [
         "tasks/delete/<int:pk>/",
         TaskDeleteView.as_view(),
         name="task-delete"
+    ),
+    path(
+        "tasks/<int:pk>/toggle-task-status/",
+        toggle_task_status,
+        name="toggle-task-status"
     ),
 ]
 
