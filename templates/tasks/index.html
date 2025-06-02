@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="text-center my-4">TODO List</h1>
+
+    <div class="row">
+      {% for task in task_list %}
+        <div class="col-md-8 offset-md-2">
+          <div class="card my-3 shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title font-weight-bold">
+                {{ task.content }}
+                {% if task.is_complete %}
+                  <span class="text-success ms-2">Done</span>
+                {% else %}
+                  <span class="text-danger ms-2">Not done</span>
+                {% endif %}
+              </h4>
+              <p class="card-text">Created: {{ task.created_time|date:"F j, Y" }} at {{ task.created_time|time:"H:i" }}</p>
+              {% if task.deadline %}
+                <p class="card-text text-danger">Deadline: {{ task.deadline|date:"F j, Y" }} at {{ task.deadline|time:"H:i" }}</p>
+              {% endif %}
+              <p class="text-muted"># Tags:
+                {% for tag in task.tags.all %}
+                  {{ tag.name }}
+                {% empty %}
+                  No tags
+                {% endfor %}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-md-8 offset-md-2 text-center">
+          <p>No tasks available yet. Add a new task</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

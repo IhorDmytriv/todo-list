@@ -4,7 +4,7 @@ from tasks.models import Task
 
 
 def index(request):
-    task_list = Task.objects.all().order_by("-datetime")
+    task_list = Task.objects.all()
     context = {
         "task_list": task_list,
     }
