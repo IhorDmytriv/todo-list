@@ -7,7 +7,7 @@ from tasks.models import Task
 
 
 def index(request):
-    task_list = Task.objects.all()
+    task_list = Task.objects.all().prefetch_related("tags")
     context = {
         "task_list": task_list,
     }
